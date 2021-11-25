@@ -13,7 +13,9 @@ int main()
 {
     std::cout << "Main thread: " <<  boost::this_thread::get_id() << "\n";
     boost::thread t1{countDownThread};
+    auto t2{boost::make_shared<boost::thread>(countDownThread)};
     std::cout << "Main thread: joining\t\t\t" <<  boost::this_thread::get_id() << "\n";
     t1.join();
+    t2->join();
     std::cout << "Main thread: joined\t\t\t" << boost::this_thread::get_id() << "\n";
 }
